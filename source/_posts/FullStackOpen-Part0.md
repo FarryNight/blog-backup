@@ -1,7 +1,7 @@
 ---
 title: FullStackOpen_Part0
 author: Farry
-img: http://api.iw233.cn/api.php?sort=random
+img: https://tvax3.sinaimg.cn/large/004kfMibgy1gtwp32inmsj61vx3h0u1202.jpg
 top: true
 cover: true
 reprintPolicy: cc_by

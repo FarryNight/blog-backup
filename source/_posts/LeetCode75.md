@@ -17,7 +17,7 @@ Input: nums = [1,2,3,4]
 Output: [1,3,6,10]
 n[i+1] = n[i]+n[i+1]
 
-### Solution
+#### Solution
 ``` bash
 vector<int> runningSum(vector<int>& n) {
         for(int i=0 ; i<n.size()-1 ; i++){
@@ -30,7 +30,7 @@ vector<int> runningSum(vector<int>& n) {
 ### 724. Find Pivot Index
 The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
 
-### Solution
+#### Solution
 ``` bash
 // int pivotIndex(vector<int>& nums) {
 //         int n = nums.size();
@@ -112,7 +112,7 @@ Two strings s and t are isomorphic if the characters in s can be replaced to get
 
 All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
 
-### Solution
+#### Solution
 ```
 //     bool isIsomorphic(string s, string t) {
 //         int i_s, i_t;
@@ -176,7 +176,7 @@ bool isIsomorphic(string s, string t) {
 ### 392. Is Subsequence
 A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
 
-### Solution
+#### Solution
 ``` bash
 bool isSubsequence(string s, string t) {
       int i_t = 0;
@@ -221,55 +221,283 @@ public:
     }
 };
 ```
+2022.10.1
+### 21. Merge Two Sorted Lists(need reviwe)
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+
+#### Solution
+``` bash
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+      if(l1 == NULL) return l2;
+      if(l2 == NULL) return l1;
+      if(l1->val <= l2->val) {l1->next = mergeTwoLists(l1->next, l2); return l1;}
+      else {l2->next = mergeTwoLists(l1,l2->next); return l2;}
+    }
+};//wiht help and finish this 
+```
+ C++ || Easy To Understand || 2 Approaches || Recursive || Iterative 
+ [KnockCat](https://leetcode.com/problems/merge-two-sorted-lists/discuss/1826666/)
+
+### 206. Reverse Linked List(need reviwe)
+
+#### Solution
+restore preview node and the next node 
+change current node let first node->next => pre node 
+then let pre node as current node
+next node store current node -> next
+so let current node => next node
+judgy current node if Null;
+``` bash
+ListNode* reverseList(ListNode* h) {
+      ListNode *pre_h , *next_h;
+      pre_h = NULL;
+      //next_h = h;
+      while(h !=NULL){
+        next_h = h->next;
+        h->next = pre_h;
+        pre_h = h;
+        h = next_h;
+      }
+      return pre_h;
+    }
+```
+[C++] Iterative vs. Recursive Solutions Compared and Explained, ~99% Time, ~85% Space 
+Ajna
+
+### 876. Middle of the Linked List
+If there are two middle nodes, return the second middle node.
+#### Solution
+count list num , *h copy a head , mid find the node;
+``` bash
+ListNode* middleNode(ListNode* head) {
+      int count = 0;
+      ListNode *mid , *h;
+      h = head;
+      while(head){
+        head = head->next;
+        count ++;
+      }
+      count = count / 2 + 1;
+      while(count--){
+        mid = h;
+        h = h->next;
+      }
+      return mid;
+    }
+```
+better solution
+``` bash
+ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        while (fast && fast->next)
+            slow = slow->next, fast = fast->next->next;
+        return slow;
+    }
+```
+Each time, slow go 1 steps while fast go 2 steps.
+When fast arrives at the end, slow will arrive right in the middle.
+lee215
+
+### 142. Linked List Cycle II
+Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+#### Solution
+O(n^2) not a good solution maybe easy to understand.
+detectCycle checkout the pre node and a copy of head node.
+``` bash
+ListNode *detectCycle(ListNode *head) {
+      ListNode *pre , *copy;
+      pre = copy = head ;
+      if(head == NULL || head->next == NULL)
+        return NULL;
+      
+      while(copy){
+        if(copy == copy->next) return copy;
+        copy = copy->next;
+        if(copy->next == NULL) return NULL;
+        while(pre != copy){
+          //cout<<pre->val<<"!="<<copy->val<<" ";
+          if(pre == copy->next) return pre;
+          pre = pre->next;
+        }
+        
+        pre = head;
+        //return detectCycle(head->next);
+      }
+      return NULL;
+    }
+``` 
+O(n) solution
+``` bash 
+ListNode *detectCycle(ListNode *head) {
+    if (head == NULL || head->next == NULL)
+        return NULL;
+    
+    ListNode *slow  = head;
+    ListNode *fast  = head;
+    ListNode *entry = head;
+    
+    while (fast->next && fast->next->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {                      // there is a cycle
+            while(slow != entry) {               // found the entry location
+                slow  = slow->next;
+                entry = entry->next;
+            }
+            return entry;
+        }
+    }
+    return NULL;                                 // there has no cycle
+}
+```
+Concise O(n) solution by using C++ with Detailed Alogrithm Description
+ngcl
+
+### 121. Best Time to Buy and Sell Stock
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+#### Solution
+time limit
+``` bash
+/*
+[7,1,5,3,6,4]
+[0]
+[9,0]
+[7,6,4,3,1]
+[1101,1102,1111]
+int maxProfit(vector<int>& prices) {
+      int n = prices.size();
+      int profit = 0 , max , min ;
+      max = min = prices[0];
+      //int index = 0;
+      if(n<=1) return 0;
+      for(int i = 0; i < n - 1 ; i ++){
+        for(int j = i + 1; j < n ; j ++){
+          if(profit < prices[j] - prices[i]){
+            profit = prices[j] - prices[i];
+          }
+        }
+      }
+      return profit;
+    }
+*/
+```
+let min is the smalliest numbers ,then checkout max prices after min
+every time we will choose the smalliest and the  after min's bigest number
+``` bash
+int maxProfit(vector<int>& prices) {
+      int n = prices.size();
+      int profit = 0 , max , min ;
+      min = prices[0];
+      max = prices[1];
+      
+      if(n<=1) return 0;
+      
+      for(int i = 1; i < n; i ++){
+        if(min > prices[i]){
+          min = prices[i];
+        }
+        else if(max < prices[i]) max = prices[i];
+        //cout<<(max - min)<<endl;
+        if(profit < (max - min)){
+            profit = max - min;
+        }
+        if(i + 1 < n) max = prices[i+1];
+        //cout<<" min "<<min<<" max "<<max<<" profit "<<profit<<endl;
+      }
+      return profit;
+    }
+```
+
+``` bash
+{
+    int lsf = Integer.MAX_VALUE; // least so far
+    int op = 0; // overall profit
+    int pist = 0; // profit if sold today
+        
+    for(int i = 0; i < prices.length; i++){
+        if(prices[i] < lsf){ // if we found new buy value which is more smaller then previous one
+            lsf = prices[i]; // update our least so far
+        }
+        pist = prices[i] - lsf; // calculating profit if sold today by, Buy - sell
+        if(op < pist){ // if pist is more then our previous overall profit
+            op = pist; // update overall profit
+        }
+    }
+        return op; // return op 
+}
+```
+
+### 409. Longest Palindrome
+longest palindrome
+
+#### Solution
+map[256]
+as a math problems count a-z A-Z while the count > 2 palindrome length + 2 after we count , we need calculat if is have a single number ,if we have one , len should + 1 as middle char
+``` bash
+int longestPalindrome(string s) {
+      int len = 0;
+      int map[256] = { 0 };
+      for(int i = 0; i < s.length(); i++){
+        //cout<<" s[i] "<<s[i]<<" map[s[i]] "<<map[s[i]]<<endl;
+        map[s[i]] += 1;
+        //cout<<" s[i] "<<s[i]<<" map[s[i]] "<<map[s[i]]<<endl;
+        if(map[s[i]] % 2 == 0) len += 2;
+      }
+
+      for(int i = 0; i < 256 ; i ++)
+        if(map[i] % 2) return len + 1;
+      
+      return len;
+    }
+
+      // for(int i = 0; i < 256 && map[i] > 1 ; i ++){
+      //   len += map[i] / 2 * 2;
+      //   cout<<" map[s[i]] "<<map[s[i]]<<endl;
+      // }
+```
+
+### 
+
+####
 
 ###
 
-###
+####
 
 ###
 
-###
+####
 
 ###
 
-###
+####
 
 ###
 
-###
+####
 
 ###
 
-###
+####
 
 ###
 
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
+####

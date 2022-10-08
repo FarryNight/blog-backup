@@ -17,6 +17,7 @@ what is question , think about it .
 
 ### Case
 Consider the boundary case
+NULL nullptr [] etc.
 
 ### 
 

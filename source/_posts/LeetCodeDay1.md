@@ -1,7 +1,7 @@
 ---
 title: LeetCodeDay1
 author: Farry
-img: http://ap1.iw233.cn/api.php?sort=random
+img: https://tvax1.sinaimg.cn/large/ec43126fgy1gza1lok99sj220x196qv5.jpg
 top: true
 cover: true
 reprintPolicy: cc_by
