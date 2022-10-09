@@ -19,8 +19,8 @@ what is question , think about it .
 Consider the boundary case
 NULL nullptr [] etc.
 
-### 
-
+### Using function && struct
+vector stack queue
 
 ### 
 

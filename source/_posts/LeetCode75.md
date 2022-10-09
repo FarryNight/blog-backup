@@ -474,14 +474,122 @@ int longestPalindrome(string s) {
       // }
 ```
 
-### 
+### 589. N-ary Tree Preorder Traversal
+Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value
 
-####
+#### Solution
+``` bash
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> children;
 
-###
+    Node() {}
 
-####
+    Node(int _val) {
+        val = _val;
+    }
 
+    Node(int _val, vector<Node*> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+public:
+    vector<int> preorder(Node* root) {
+      vector<int> result;
+      if(root == nullptr) return result;
+      stack<Node *> s;
+      s.push(root);
+      Node * cur;
+      while(!s.empty()){
+        cur = s.top();
+        result.push_back(cur->val);
+        s.pop();
+        for(int i = cur->children.size() - 1 ; i >= 0 ; i --){
+          if(cur->children[i] != nullptr ) {
+            s.push(cur->children[i]);
+          }
+        }
+      }
+      return result;
+    }
+};
+```
+stack function , using vector , 
+MrQuin : 
+From the code we use a stack to simulate the process:
+we push 1 to the stack.
+we pop 1 out, add 1 into result; Add the children of 1 into stack. The value in the stack will be 3, 2 and 2 at the top position;
+we pop 2 out and add it to result; Then we add children of 2 into stack. So the stack will be like 3, 5, 4 and with 4 at the top.
+we pop 4 and 5 out of stack since they are leaf node. Currently result will be like 1, 2, 4, 5.
+we pop 3 out and add its children into stack. The stack is like 7, 6 with 6 at the top.
+we pop 6 and 7 out and the stack becomes empty.
+So the final result will be 1, 2, 4, 5, 3, 6, 7
+
+### 102. Binary Tree Level Order Traversal
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+#### Solution
+``` bash
+vector<vector<int>> levelOrder(TreeNode *root) {
+      vector<vector<int>> result;
+      if(root == nullptr) return result;
+      
+      TreeNode *cur;
+      queue<TreeNode *> que;
+      que.push(root);
+      while(!que.empty()){
+        vector<int> value;
+        
+        for(int i = que.size() - 1; i >= 0 ; i --){
+          cur = que.front();
+          que.pop();
+          if(cur->left) que.push(cur->left);
+          if(cur->right) que.push(cur->right);
+          value.push_back(cur->val);
+        }
+        result.push_back(value);
+      }
+      
+      return result;
+    }
+```
+checkout 
+``` bash
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>arr;
+        if(root==nullptr)return arr;
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int>ans;
+            int n=q.size();
+            
+            for(int i=0;i<n;i++){
+                
+                TreeNode*cur=q.front();
+                q.pop();
+                if(cur->left)q.push(cur->left);
+                
+                if(cur->right)q.push(cur->right);
+                
+                ans.push_back(cur->val);
+            }
+            arr.push_back(ans);
+        }
+        return arr;
+    }
+};
+```
+leetcode discuss Conquistador17
 ###
 
 ####
