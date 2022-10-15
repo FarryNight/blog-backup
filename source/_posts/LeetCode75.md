@@ -475,7 +475,7 @@ int longestPalindrome(string s) {
 ```
 
 ### 589. N-ary Tree Preorder Traversal
-Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value
+Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value.
 
 #### Solution
 ``` bash
@@ -590,22 +590,95 @@ public:
 };
 ```
 leetcode discuss Conquistador17
-###
 
-####
+### 704. Binary Search
+O(log n) runtime complexity.
 
-###
+#### Solution
+``` bash
+int search(vector<int>& nums, int target) {
+      //int n =  = nums.size() / 2;
+      int left, mid, right;
+      left = 0 ;
+      mid = nums.size() / 2;
+      right = nums.size();
+      while(mid > left && mid < right){
+       //cout<<"\ntarget:"<<target<<" left:"<<left<<" mid:"<<mid<<" right:"<<right;
+       if(target == nums[mid]) return mid;
+       if(target > nums[mid]){
+         left = mid;
+         mid = left + (right - left) / 2;
+       }
+       if(target < nums[mid]){
+         right = mid;
+         mid = left + (right - left) / 2;
+       }
+      }
+      if(target == nums[left]) return left;
+      return -1;
+    }
+```
+better solution
+``` bash
+lone_02wolf
+110
+Last Edit: September 18, 2021 8:03 PM
 
-####
+11.8K VIEWS
 
-###
+Upvote to motivate
 
-####
+int search(vector<int>& nums, int target) {
+        int n = nums.size()-1;
+        int low = 0, high = n;
+        while( low <= high){
+            int mid = low + (high-low)/2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] > target) high = mid -1;
+            else low = mid + 1;
+        }
+        return -1;
+  }
+```
 
-###
+### 278. First Bad Version
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
 
-####
+#### Solution
+``` bash
+int firstBadVersion(int n) {
+      int left = 0, right = 2147483648 - 1; // 2^32 - 1
+      while(1){
+        if(isBadVersion(n)){
+          right = n - 1;
+          if(isBadVersion(right) == false) return right + 1;
+        }
+        else{
+          left = n + 1;
+          if(isBadVersion(left)) return left;
+        }
+        n = left + (right - left) / 2;
+      }  
+    }
+```
+better solution:
+``` bash
+int firstBadVersion(int n) {
+        int lower = 1, upper = n, mid;
+        while(lower < upper) {
+            mid = lower + (upper - lower) / 2;
+            if(!isBadVersion(mid)) lower = mid + 1;   /* Only one call to API */
+            else upper = mid;
+        }
+        return lower;   /* Because there will alway be a bad version, return lower here */
+    }
+```
 
-###
+whaleking1990
+70
+September 7, 2015 9:21 PM
 
-####
+21.7K VIEWS
+
+### Not Finished
