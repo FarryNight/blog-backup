@@ -538,27 +538,26 @@ Given the root of a binary tree, return the level order traversal of its nodes' 
 #### Solution
 ``` bash
 vector<vector<int>> levelOrder(TreeNode *root) {
-      vector<vector<int>> result;
-      if(root == nullptr) return result;
-      
-      TreeNode *cur;
-      queue<TreeNode *> que;
-      que.push(root);
-      while(!que.empty()){
-        vector<int> value;
-        
-        for(int i = que.size() - 1; i >= 0 ; i --){
-          cur = que.front();
-          que.pop();
-          if(cur->left) que.push(cur->left);
-          if(cur->right) que.push(cur->right);
-          value.push_back(cur->val);
-        }
-        result.push_back(value);
-      }
-      
-      return result;
+  vector<vector<int>> result;
+  if(root == nullptr) return result;
+  
+  TreeNode *cur;
+  queue<TreeNode *> que;
+  que.push(root);
+  while(!que.empty()){
+    vector<int> value;
+    
+    for(int i = que.size() - 1; i >= 0 ; i --){
+      cur = que.front();
+      que.pop();
+      if(cur->left) que.push(cur->left);
+      if(cur->right) que.push(cur->right);
+      value.push_back(cur->val);
     }
+    result.push_back(value);
+  }
+  return result;
+}
 ```
 checkout 
 ``` bash

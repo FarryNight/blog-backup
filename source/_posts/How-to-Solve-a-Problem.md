@@ -14,6 +14,7 @@ top:
 
 ### THe Question
 what is question , think about it .
+step by step thinking why 
 
 ### Case
 Consider the boundary case
