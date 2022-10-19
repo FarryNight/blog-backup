@@ -13,6 +13,7 @@ categories: [Algorithms]
 
 ### Largest Perimeter Triangle
 store the 1st largest number
+<!-- more -->
 store the 2st largest number
 store the 3st largest number
 how to ?

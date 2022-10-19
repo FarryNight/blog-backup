@@ -10,7 +10,8 @@ date: 2022-09-30 15:30:06
 top: 
 ---
 ## Introduction
-This study plan is for those who want to prepare for technical interviews but are uncertain which problems they should focus on. 、
+This study plan is for those who want to prepare for technical interviews but are uncertain which problems they should focus on.
+<!-- more -->
 
 ### 1480.Running Sum of 1d Array
 Input: nums = [1,2,3,4]

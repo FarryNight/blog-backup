@@ -2,15 +2,16 @@
 title: LeetCode 75 Level 2
 author: Farry
 cover: true
-tags: []
-categories: []
+tags: [c++,syntactic sugar]
+categories: [Algorithms]
 reprintPolicy: cc_by
 date: 2022-10-15 20:24:34
 img:
 top:
 ---
-## 
-
+## LeetCode75-v2
+leetcode
+<!-- more -->
 
 ### 202. Happy Number
 A happy number is a number defined by the following process:
@@ -21,7 +22,7 @@ Those numbers for which this process ends in 1 are happy.
 
 #### Solution
 n%10 get last number , n/10 let n smaller , map[100] , beacause all of the number will get smaller than 100 if the number is repeat , that mean's we fund a loop .
-``` bash
+``` c++
 bool isHappy(int n) {
   int sum = 0;
   int map[100] = {0};

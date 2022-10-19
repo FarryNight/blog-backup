@@ -11,6 +11,7 @@ top:
 ---
 ## How to solve a problems
 [cogito ergo sum](我思故我在)
+<!-- more -->
 
 ### THe Question
 what is question , think about it .

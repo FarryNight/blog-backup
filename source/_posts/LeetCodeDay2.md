@@ -13,7 +13,7 @@ categories: [Algorithms]
 
 ### Number of 1 Bits
 uint32_t: unsigned int
-
+<!-- more -->
 https://en.wikipedia.org/wiki/Hamming_weight
 
 need use operator & ^ ( or not ? )

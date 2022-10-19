@@ -1,7 +1,7 @@
 ---
 title: FullStackOpen_Part0
 author: Farry
-img: https://tvax3.sinaimg.cn/large/004kfMibgy1gtwp32inmsj61vx3h0u1202.jpg
+img: 
 top: true
 cover: true
 reprintPolicy: cc_by
@@ -11,6 +11,7 @@ categories: [Front End]
 ---
 ## Start
 It’s about how to start with nodejs , java-script , introduce a base react app
+<!-- more -->
 First thing is learning how to setup enviroment.
 Familiar with project structure
 

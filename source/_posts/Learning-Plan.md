@@ -11,6 +11,8 @@ top:
 ---
 ## Planning What You Wanna Do
 
+<!-- more -->
+
 ### Language Learning
 1h -- after 5h 1h reviwe
 

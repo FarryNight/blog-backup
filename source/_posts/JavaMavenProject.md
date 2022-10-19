@@ -5,12 +5,13 @@ img:
 top: false
 cover: true
 tags: [java,development]
-categories: [Bavk End]
+categories: [Back End]
 reprintPolicy: cc_by
 date: 2022-09-29 22:58:02
 ---
 ## Enviroment
 set up java and maven (use command line)
+<!-- more -->
 attention kit tool version
 setup java : java jdk , java se
 java development kit , java standard edition

@@ -1,7 +1,7 @@
 ---
 title: LeetCodeDay1
 author: Farry
-img: https://tvax1.sinaimg.cn/large/ec43126fgy1gza1lok99sj220x196qv5.jpg
+img: 
 top: true
 cover: true
 reprintPolicy: cc_by
@@ -13,6 +13,7 @@ categories: [Algorithms]
 
 ### Count Odd Numbers in an Interval Range
 odd even | odd odd | even even | even Odd
+<!-- more -->
 
 ### Solution
 ``` bash

@@ -11,6 +11,7 @@ categories: [Front End]
 ---
 ## Map
 map key value
+<!-- more -->
 ``` bash
 <ul>
   {notes.map((note, i) =>

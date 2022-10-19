@@ -11,6 +11,7 @@ categories: [Front End]
 ---
 ## Start React Leaning
 app created with react
+<!-- more -->
 ``` bash
 npx create-react-app part1
 cd part1
