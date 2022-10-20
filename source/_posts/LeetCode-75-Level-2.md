@@ -166,10 +166,98 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
 }
 ```
 
-### 
+### 1706. Where Will the Ball Fall
 
 
-#### 
+#### Solution
+you need to know the ball's  moving action search from 0 to cloumn lenght , search every cloumn if it will fall , the count will equal row lenght
+``` c++
+class Solution {
+public:
+    vector<int> findBall(vector<vector<int>>& grid) {
+      int m = grid.size() , n = grid[0].size() - 1;
+      int il = 0 , ir = n , step = 0 , count = 0 ;
+      vector<int> res;
+      while( n + 1 ){
+        //cout<<"\n il "<< il ;
+        //cout<<"\n i il count ";
+        for( int i = 0 ; i < m ; ++i){
+          //cout<<"\n grid[i][il]:"<< grid[i][il] <<" ";
+          if(grid[i][il] == 1 && il + 1 <= ir && grid[i][il] == grid[i][il + 1]){
+            //cout<<"\n "<< i <<" "<< il << " " << count;
+            ++il;
+            ++count;
+            continue;
+          }
+          if(grid[i][il] == -1 && il - 1 >= 0 && grid[i][il] == grid[i][il - 1]){
+            //cout<<"\n "<< i <<" "<< il << " " << count;
+            --il;
+            ++count;
+            continue;
+          }
+          //else break;
+        }
+        if(count >= m) res.push_back(il);
+        else res.push_back(-1);
+        il = ++step;
+        --n;
+        count = 0;
+      }
+      return res;
+    }
+};
+
+/*
+if(grid[i][il] == 1 && grid[i][il] == grid[i][il + 1]){
+            cout<<"\n i il "<< i <<" "<< il;
+              ++il;
+              continue;
+            }
+          else if(grid[i][il] == -1 && grid[i][il] == grid[i][il - 1]){
+            --il;
+            continue;
+          }
+          else if(grid[i][il] == 1 && grid[i][il] != grid[i][il + 1]){
+            res.push_back(-1);
+            break;
+          }
+          else if(grid[i][il] == -1 && grid[i][il] != grid[i][il - 1]){
+            res.push_back(-1);
+            break;
+          }
+          else res.push_back(1);
+          
+          [[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]
+[[-1]]
+[[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]
+*/
+```
+lee215
+167146
+December 27, 2020 3:04 PM
+
+14.2K VIEWS
+[Java/C++/Python] Solution with Explanation
+``` c++
+vector<int> findBall(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        vector<int> res;
+        for (int i = 0; i < n; ++i) {
+            int i1 = i, i2;
+            for (int j = 0; j < m; ++j) {
+                i2 = i1 + grid[j][i1];
+                if (i2 < 0 || i2 >= n || grid[j][i2] != grid[j][i1]) {
+                    i1 = -1;
+                    break;
+                }
+                i1 = i2;
+            }
+            res.push_back(i1);
+        }
+        return res;
+    }
+```
+great solution
 
 ### 
 
