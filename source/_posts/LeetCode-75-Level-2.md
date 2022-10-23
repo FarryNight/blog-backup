@@ -208,26 +208,7 @@ public:
 };
 
 /*
-if(grid[i][il] == 1 && grid[i][il] == grid[i][il + 1]){
-            cout<<"\n i il "<< i <<" "<< il;
-              ++il;
-              continue;
-            }
-          else if(grid[i][il] == -1 && grid[i][il] == grid[i][il - 1]){
-            --il;
-            continue;
-          }
-          else if(grid[i][il] == 1 && grid[i][il] != grid[i][il + 1]){
-            res.push_back(-1);
-            break;
-          }
-          else if(grid[i][il] == -1 && grid[i][il] != grid[i][il - 1]){
-            res.push_back(-1);
-            break;
-          }
-          else res.push_back(1);
-          
-          [[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]
+[[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]
 [[-1]]
 [[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]
 */
@@ -259,17 +240,113 @@ vector<int> findBall(vector<vector<int>>& grid) {
 ```
 great solution
 
+### 14. Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+#### solution
+compaire every string of index if not equal return res ;
+``` c++
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+      int map[128] = { 0 };
+      int n = strs.size() , i = 0 , len = strs[i].size() ;
+      string res;
+      //cout<<n<<endl;
+      if( n == 1){
+        for(int i = 0 ; i < len ; ++i) res.push_back(strs[0][i]);
+        return res;
+      }
+      int nextlen = strs[i + 1].size();
+      for(int j = 0 ; j < len && j < nextlen; ++j){
+        for(i = 0 ; i < n - 1 ; ++i){
+          nextlen = strs[i + 1].size();
+          if(strs[i][j] == strs[i+1][j]){
+            map[ strs[i][j] ] ++;
+          }
+          else return res;
+          if(map[ strs[i][j] ] != 0 && map[ strs[i][j] ] % (n - 1) == 0 ){
+            res.push_back(strs[i][j]);
+          }
+        }
+      }
+      return res;
+    }
+};
+/*
+["flower","flow","flight"]
+["ab","ba","ca","da"]
+["a"]
+["dog","racecar","car"]
+[""]
+["aabbbaaaaaabbbaaaa","aabbbaaaaaabbbaaaa","aabbbaaaaaabbbaaaa","aabbbaaaaaabbbaaaa","aabbbaaaaaabbbaaaa","aabbbaaaaaabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa"]
+["a","ba"]
+["cir","car"]
+["aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa","aabbbaaaa"]
+
+*/
+```
+more simple way 
+``` c++
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& str) {
+        int n = str.size();
+        if(n==0) return "";
+        
+        string ans  = "";
+        sort(begin(str), end(str));
+        string a = str[0];
+        string b = str[n-1];
+        
+        for(int i=0; i<a.size(); i++){
+            if(a[i]==b[i]){
+                ans = ans + a[i];
+            }
+            else{
+                break;
+            }
+        }
+        
+        return ans;
+        
+    }
+};
+```
+
 ### 
 
 
-#### 
+#### solution
+``` c++
+```
 
 ### 
 
 
-#### 
+#### solution
+``` c++
+```
 
 ### 
 
 
-#### 
+#### solution
+``` c++
+```
+
+### 
+
+
+#### solution
+``` c++
+```
+
+### 
+
+
+#### solution
+``` c++
+```
